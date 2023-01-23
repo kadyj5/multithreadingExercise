@@ -4,12 +4,12 @@ import static figure.Point.getPointsDistance;
 
 public class Circle {
     private final Point point;
-    private static final Point pointInCentre = new Point(0,0);;
+    private static final Point pointInCentre = new Point(0,0);
     private static double r;
 
     public Circle(Point point) {
         this.point = new Point(0,point.getY());
-        this.r = getPointsDistance(pointInCentre,this.point);
+        r = getPointsDistance(pointInCentre,this.point);
     }
 
     public static Point getPointInCentre() {

@@ -6,7 +6,7 @@ import java.util.*;
 
 public class App {
 
-    public static List<Point> patrialPointsCyrcle = new ArrayList<Point>();
+    public static List<Point> patrialPointsCyrcle = new ArrayList<>();
     public static final Object lock = new Object();
     public static int pointsTotal = 0;
     public static int pointsCircle = 0;
@@ -23,7 +23,6 @@ public class App {
         System.out.println(circle);
 
 
-        long startTime = System.currentTimeMillis();
         Point[] pointsTab = new Point[1000000];
         Thread thread1 = new Thread(new PointThread(pointsTab));
         Thread thread2 = new Thread(new PointThread(pointsTab));
@@ -51,7 +50,7 @@ public class App {
             thread6.join();
             thread7.join();
             thread8.join();
-        }catch (InterruptedException e) {}
+        }catch (InterruptedException ignored) {}
 
         System.out.println("Points total = " + pointsTotal);
         System.out.println("Points in cyrcle = " + pointsCircle);
