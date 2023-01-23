@@ -1,3 +1,4 @@
+import figure.Circle;
 import figure.Point;
 import figure.SideSquare;
 import figure.Square;
@@ -11,7 +12,7 @@ public class Main {
     // semafor
     public static final Object lock = new Object();
 //    public static volatile  int counter = 0;
-    public static AtomicInteger counter = new AtomicInteger(0);
+    public static int counter;
     public static void main(String[] args) {
 
 
@@ -25,7 +26,11 @@ public class Main {
         Point pointSquare3 = new Point(-1,-1);
         Point pointSquare4 = new Point(1,-1);
         Square square = new Square(pointSquare1,pointSquare2,pointSquare3,pointSquare4);
+        Circle circle = new Circle(pointSquare1);
         System.out.println(square);
+        System.out.println(circle);
+
+
 
 //        Thread thread1 = new Thread(new PointThread(incrementatorObject));
 //        Thread thread2 = new Thread(new PointThread(incrementatorObject));

@@ -11,10 +11,10 @@ public class SideSquare{
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Side:\n");
-        sb.append("A: ").append(point1);
-        sb.append("B: ").append(point2);
-        sb.append("\n");
+        final StringBuilder sb = new StringBuilder("Side:\n")
+                .append("A: ").append(point1)
+                .append("B: ").append(point2)
+                .append("\n");
         return sb.toString();
     }
 }
