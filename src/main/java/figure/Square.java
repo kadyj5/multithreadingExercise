@@ -1,8 +1,5 @@
 package figure;
 
-import java.util.Arrays;
-import java.util.Map;
-
 import static figure.Point.getPointsDistance;
 
 public class Square{

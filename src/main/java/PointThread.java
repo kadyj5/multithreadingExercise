@@ -1,4 +1,3 @@
-import com.sun.tools.javac.Main;
 import figure.Circle;
 import figure.Point;
 
@@ -15,16 +14,20 @@ public class PointThread implements Runnable {
 
     @Override
     public void run() {
-        synchronized (Main.lock){
+        synchronized (App.lock){
             for (int i = 0; i < pointsTab.length; i++) {
                 pointsTab[i] = new Point(randomInRange(),randomInRange());
 //                System.out.println("-----" + Point.getPointsDistance(pointsTab[i],Circle.getPointInCentre()));
 //                System.out.println(pointsTab[i]);
                 if(Point.getPointsDistance(pointsTab[i],Circle.getPointInCentre()) <= Circle.getR()) {
-                    Main.pointsCircle++;
+                    App.pointsCircle++;
+                    if(randomInRange() < 0)
+                        App.patrialPointsCyrcle.add(pointsTab[i]);
                 }
-                Main.pointsTotal++;
+                App.pointsTotal++;
             }
+
+
         }
 
     }

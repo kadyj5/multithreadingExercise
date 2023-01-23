@@ -4,22 +4,14 @@ import figure.Square;
 
 import java.util.*;
 
-public class Main {
+public class App {
 
-    public static List<Double> patrialPointsCyrcle = new ArrayList<>();
+    public static List<Point> patrialPointsCyrcle = new ArrayList<Point>();
     public static final Object lock = new Object();
-    public static int pointsTotal;
-    public static int pointsCircle;
+    public static int pointsTotal = 0;
+    public static int pointsCircle = 0;
     public static void main(String[] args) {
 
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Podaj ilość punktów dla jednego wątku (ilość punktów x ilość wątków (8)): ");
-        int numberOfPoints = scanner.nextInt();
-
-        Random rand = new Random();
-        double pi = 0;
-        double randomNumber = 0.0;
 
         Point pointSquare1 = new Point(1,1);
         Point pointSquare2 = new Point(-1,1);
@@ -32,7 +24,7 @@ public class Main {
 
 
         long startTime = System.currentTimeMillis();
-        Point[] pointsTab = new Point[numberOfPoints];
+        Point[] pointsTab = new Point[1000000];
         Thread thread1 = new Thread(new PointThread(pointsTab));
         Thread thread2 = new Thread(new PointThread(pointsTab));
         Thread thread3 = new Thread(new PointThread(pointsTab));
@@ -63,21 +55,13 @@ public class Main {
 
         System.out.println("Points total = " + pointsTotal);
         System.out.println("Points in cyrcle = " + pointsCircle);
+        System.out.println("Partial points in cyrcle = " + patrialPointsCyrcle.size());
+        System.out.println("PPIT / PIC = " + ( (double)pointsCircle / (double) patrialPointsCyrcle.size()));
+        System.out.println("PI = " + piCount(square));
+    }
 
-//        Thread thread1 = new Thread(new PointThread(incrementatorObject));
-//        Thread thread2 = new Thread(new PointThread(incrementatorObject));
-//        Thread thread3 = new Thread(new PointThread(incrementatorObject));
-//
-//        thread1.start();
-//        thread2.start();
-//        thread3.start();
-//
-//        try {
-//            thread2.join();
-//            thread3.join();
-//            thread1.join();
-//        } catch (InterruptedException e){}
-        long endTime = System.currentTimeMillis();
-        System.out.println("czas działania programu = " + (endTime - startTime) );
+    static double piCount(Square square){
+        return square.squareArea() / ((double) pointsTotal / (double) pointsCircle) / Math.pow(Circle.getR(),2);
+
     }
 }
