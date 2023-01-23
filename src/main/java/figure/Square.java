@@ -16,6 +16,7 @@ public class Square{
             this.sideSize = getPointsDistance(point1,point2);
 
     }
+
     public double squareArea(){
         return Math.pow(this.sideSize,2);
     }

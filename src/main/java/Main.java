@@ -1,23 +1,23 @@
 import figure.Circle;
 import figure.Point;
-import figure.SideSquare;
 import figure.Square;
 
-import java.util.Objects;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.*;
 
 public class Main {
 
-    // semafor
+    public static List<Double> patrialPointsCyrcle = new ArrayList<>();
     public static final Object lock = new Object();
-//    public static volatile  int counter = 0;
-    public static int counter;
+    public static int pointsTotal;
+    public static int pointsCircle;
     public static void main(String[] args) {
 
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Podaj ilość punktów dla jednego wątku (ilość punktów x ilość wątków (8)): ");
+        int numberOfPoints = scanner.nextInt();
+
         Random rand = new Random();
-        IncrementatorObject incrementatorObject = new IncrementatorObject();
         double pi = 0;
         double randomNumber = 0.0;
 
@@ -31,6 +31,38 @@ public class Main {
         System.out.println(circle);
 
 
+        long startTime = System.currentTimeMillis();
+        Point[] pointsTab = new Point[numberOfPoints];
+        Thread thread1 = new Thread(new PointThread(pointsTab));
+        Thread thread2 = new Thread(new PointThread(pointsTab));
+        Thread thread3 = new Thread(new PointThread(pointsTab));
+        Thread thread4 = new Thread(new PointThread(pointsTab));
+        Thread thread5 = new Thread(new PointThread(pointsTab));
+        Thread thread6 = new Thread(new PointThread(pointsTab));
+        Thread thread7 = new Thread(new PointThread(pointsTab));
+        Thread thread8 = new Thread(new PointThread(pointsTab));
+
+        thread1.start();
+        thread2.start();
+        thread3.start();
+        thread4.start();
+        thread5.start();
+        thread6.start();
+        thread7.start();
+        thread8.start();
+        try{
+            thread1.join();
+            thread2.join();
+            thread3.join();
+            thread4.join();
+            thread5.join();
+            thread6.join();
+            thread7.join();
+            thread8.join();
+        }catch (InterruptedException e) {}
+
+        System.out.println("Points total = " + pointsTotal);
+        System.out.println("Points in cyrcle = " + pointsCircle);
 
 //        Thread thread1 = new Thread(new PointThread(incrementatorObject));
 //        Thread thread2 = new Thread(new PointThread(incrementatorObject));
@@ -45,7 +77,7 @@ public class Main {
 //            thread3.join();
 //            thread1.join();
 //        } catch (InterruptedException e){}
-
-
+        long endTime = System.currentTimeMillis();
+        System.out.println("czas działania programu = " + (endTime - startTime) );
     }
 }
