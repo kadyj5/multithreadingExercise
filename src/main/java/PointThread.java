@@ -11,14 +11,11 @@ public class PointThread implements Runnable {
         this.pointsTab = pointsTab;
     }
 
-
     @Override
     public void run() {
         synchronized (App.lock){
             for (int i = 0; i < pointsTab.length; i++) {
                 pointsTab[i] = new Point(randomInRange(),randomInRange());
-//                System.out.println("-----" + Point.getPointsDistance(pointsTab[i],Circle.getPointInCentre()));
-//                System.out.println(pointsTab[i]);
                 if(Point.getPointsDistance(pointsTab[i],Circle.getPointInCentre()) <= Circle.getR()) {
                     App.pointsCircle++;
                     if(randomInRange() < 0)
@@ -26,10 +23,7 @@ public class PointThread implements Runnable {
                 }
                 App.pointsTotal++;
             }
-
-
         }
-
     }
 
     private static double randomInRange(){

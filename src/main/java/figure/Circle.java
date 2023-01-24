@@ -20,7 +20,6 @@ public class Circle {
         return r;
     }
 
-
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("Circle:\n");
@@ -31,5 +30,4 @@ public class Circle {
                 .append("\n");
         return sb.toString();
     }
-
 }

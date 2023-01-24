@@ -5,23 +5,21 @@ import figure.Square;
 import java.util.*;
 
 public class App {
-
     public static List<Point> patrialPointsCyrcle = new ArrayList<>();
     public static final Object lock = new Object();
     public static int pointsTotal = 0;
     public static int pointsCircle = 0;
+
     public static void main(String[] args) {
-
-
         Point pointSquare1 = new Point(1,1);
         Point pointSquare2 = new Point(-1,1);
         Point pointSquare3 = new Point(-1,-1);
         Point pointSquare4 = new Point(1,-1);
         Square square = new Square(pointSquare1,pointSquare2,pointSquare3,pointSquare4);
         Circle circle = new Circle(pointSquare1);
+
         System.out.println(square);
         System.out.println(circle);
-
 
         Point[] pointsTab = new Point[1000000];
         Thread thread1 = new Thread(new PointThread(pointsTab));
@@ -41,6 +39,7 @@ public class App {
         thread6.start();
         thread7.start();
         thread8.start();
+
         try{
             thread1.join();
             thread2.join();
